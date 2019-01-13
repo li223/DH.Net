@@ -11,18 +11,18 @@ namespace DH.Net
         /// User Level
         /// </summary>
         [JsonProperty("lvl")]
-        public int Level { get; private set; }
+        public ulong Level { get; private set; }
 
         /// <summary>
         /// Total Exp of the user
         /// </summary>
         [JsonProperty("total_exp")]
-        public int TotalExp { get; private set; }
+        public ulong TotalExp { get; private set; }
 
         /// <summary>
         /// The percentage of level completion
         /// </summary>
         [JsonProperty("exp_percent")]
-        public int ExpPercent { get; private set; }
+        public ulong ExpPercent { get; private set; }
     }
 }
