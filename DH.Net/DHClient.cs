@@ -47,8 +47,8 @@ namespace DH.Net
         /// <returns></returns>
         public async Task ExchangePointsAsync(ulong take_from, ulong give_to, ulong guild_id, int amount)
         {
-            await RemovePointsAsync(take_from, guild_id, amount);
-            await GivePointsAsync(give_to, guild_id, amount);
+            await RemovePointsAsync(take_from, guild_id, amount).ConfigureAwait(false);
+            await GivePointsAsync(give_to, guild_id, amount).ConfigureAwait(false);
         }
 
         /// <summary>
