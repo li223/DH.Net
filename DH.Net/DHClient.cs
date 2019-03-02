@@ -9,7 +9,7 @@ namespace DH.Net
     /// <summary>
     /// Main Client Class
     /// </summary>
-    public class DHClient
+    public class DHClient : IDisposable
     {
         /// <summary>
         /// Delegate for DHClientErrors
@@ -35,6 +35,20 @@ namespace DH.Net
         {
             this._apiKey = api_key;
             this._httpClient.DefaultRequestHeaders.Add("X-API-KEY", this._apiKey);
+        }
+
+        /// <summary>
+        /// Exchange points between 2 users
+        /// </summary>
+        /// <param name="take_from">The ID of the user to remove points from</param>
+        /// <param name="give_to">The ID of the user to give points to</param>
+        /// <param name="guild_id">The ID of the guild</param>
+        /// <param name="amount">The amount of points to exchange</param>
+        /// <returns></returns>
+        public async Task ExchangePointsAsync(ulong take_from, ulong give_to, ulong guild_id, int amount)
+        {
+            await RemovePointsAsync(take_from, guild_id, amount);
+            await GivePointsAsync(give_to, guild_id, amount);
         }
 
         /// <summary>
@@ -193,5 +207,10 @@ namespace DH.Net
                 return null;
             }
         }
+
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        public void Dispose() => GC.SuppressFinalize(this);
     }
 }

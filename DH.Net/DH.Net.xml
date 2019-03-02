@@ -27,6 +27,16 @@
             </summary>
             <param name="api_key"></param>
         </member>
+        <member name="M:DH.Net.DHClient.ExchangePointsAsync(System.UInt64,System.UInt64,System.UInt64,System.Int32)">
+            <summary>
+            Exchange points between 2 users
+            </summary>
+            <param name="take_from">The ID of the user to remove points from</param>
+            <param name="give_to">The ID of the user to give points to</param>
+            <param name="guild_id">The ID of the guild</param>
+            <param name="amount">The amount of points to exchange</param>
+            <returns></returns>
+        </member>
         <member name="M:DH.Net.DHClient.GivePointsAsync(System.UInt64,System.UInt64,System.Int32)">
             <summary>
             Gives a set number of points to a user
@@ -94,6 +104,11 @@
             </summary>
             <param name="guild_id">Id of the target guild</param>
             <returns>Idunno</returns>
+        </member>
+        <member name="M:DH.Net.DHClient.Dispose">
+            <summary>
+            Dispose
+            </summary>
         </member>
         <member name="T:DH.Net.UserExpLevel">
             <summary>
