@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -194,13 +195,12 @@ namespace DH.Net
         /// Idunno
         /// </summary>
         /// <param name="guild_id">Id of the target guild</param>
-        /// <returns>Idunno</returns>
-        [Obsolete("This endpoulong seems non-functional and only returns an error response")]
-        public async Task<object> GetAllUsersAsync(ulong guild_id)
+        /// <returns>Collection of users that are ranked</returns>
+        public async Task<IEnumerable<ulong>> GetAllUsersAsync(ulong guild_id)
         {
             var res = await _httpClient.PostAsync(new Uri($"{_baseRequest}/ranking/user/all/ids?&server_id={guild_id}"), null).ConfigureAwait(false);
             var data = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
-            if (res.IsSuccessStatusCode) return data;
+            if (res.IsSuccessStatusCode) return JsonConvert.DeserializeObject<IEnumerable<ulong>>(data);
             else
             {
                 this.DHClientErrored?.Invoke(JObject.Parse(data).SelectToken("message").ToString());
